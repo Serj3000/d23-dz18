@@ -331,16 +331,18 @@ Route::get('/form', function(){
     return view('trash.form');
 });
 
-//|---------------------------------------------------------------------------------------
-//
+//|------------------------------------------Admin---------------------------------------------------------
+//|
+//|----Categories
+//|
 // Route::resources([
 //     '/admin/categories' => 'CategoryController'
 // ]);
-//Общий перечень
+//Общий перечень объектов
 Route::get('/admin/categories', 'CategoryController@index')->name('categories.index');
 //Создание
 Route::get('/admin/categories/create', 'CategoryController@create')->name('categories.create');
-//Хранение
+//Сохранение
 Route::post('/admin/categories', 'CategoryController@store')->name('categories.store');
 //Просмотр
 Route::get('/admin/categories/{category?}', 'CategoryController@show')->name('categories.show');
@@ -350,3 +352,20 @@ Route::get('/admin/categories/{category?}/edit', 'CategoryController@edit')->nam
 Route::put('/admin/categories/{category?}', 'CategoryController@update')->name('categories.update');
 //Уничтожение
 Route::delete('/admin/categories/{category?}', 'CategoryController@destroy')->name('categories.destroy');
+//|
+//|----Tags
+//|
+//Общий перечень объектов
+Route::get('/admin/tags', 'TagController@index')->name('tags.index');
+//Создание
+Route::get('/admin/tags/create', 'TagController@create')->name('tags.create');
+//Сохранение
+Route::post('/admin/tags', 'TagController@store')->name('tags.store');
+//Просмотр
+Route::get('/admin/tags/{tag?}', 'TagController@show')->name('tags.show');
+//Редактирование
+Route::get('/admin/tags/{tag?}/edit', 'TagController@edit')->name('tags.edit');
+//Обновление
+Route::put('/admin/tags/{tag?}', 'TagController@update')->name('tags.update');
+//Уничтожение
+Route::delete('/admin/tags/{tag?}', 'TagController@destroy')->name('tags.destroy');

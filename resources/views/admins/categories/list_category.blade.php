@@ -20,9 +20,9 @@
             <td width="30%">{{$category->slug}}</td>
             <td width="20%">{{$category->created_at}}</td>
             <td width="5%">
-                <form method="POST" action="{{route('categories.destroy',['category'=>$category->id])}}">
-                @method('delete')
-                @csrf
+                <form method="POST" action="{{route('categories.destroy', ['category'=>$category->id])}}">
+                    @method('delete')
+                    @csrf
 
                     <input type="submit" value="x">
                 </form>
