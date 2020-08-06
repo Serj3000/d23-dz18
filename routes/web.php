@@ -71,9 +71,9 @@ Route::get('/single-post-{id?}', function(\App\Post $id){
 //     return view('index', ['params'=>$categ_id]);
 // })->name('category.blog');
 
-Route::get('/category-{slug?}', function($plug=null){
+Route::get('/category-{slug?}', function($slug=null){
 
-    $categ = \App\Category::where('slug', $plug)->first();
+    $categ = \App\Category::where('slug', $slug)->first();
 
     $categ_slug=$categ->post()->latest('created_at')->paginate(5);
 
@@ -322,3 +322,31 @@ Route::get('/pagin', function(\App\Tag $id){
         'modelPost'=>$modelPost,
     ]);
 });
+
+Route::get('/session', function(){
+    return view('trash.session');
+});
+
+Route::get('/form', function(){
+    return view('trash.form');
+});
+
+//|---------------------------------------------------------------------------------------
+//
+// Route::resources([
+//     '/admin/categories' => 'CategoryController'
+// ]);
+//Общий перечень
+Route::get('/admin/categories', 'CategoryController@index')->name('categories.index');
+//Создание
+Route::get('/admin/categories/create', 'CategoryController@create')->name('categories.create');
+//Хранение
+Route::post('/admin/categories', 'CategoryController@store')->name('categories.store');
+//Просмотр
+Route::get('/admin/categories/{category?}', 'CategoryController@show')->name('categories.show');
+//Редактирование
+Route::get('/admin/categories/{category?}/edit', 'CategoryController@edit')->name('categories.edit');
+//Обновление
+Route::put('/admin/categories/{category?}', 'CategoryController@update')->name('categories.update');
+//Уничтожение
+Route::delete('/admin/categories/{category?}', 'CategoryController@destroy')->name('categories.destroy');
